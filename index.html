@@ -63,8 +63,7 @@
             color: #4fc3f7;
             text-shadow: 0 0 15px rgba(79, 195, 247, 0.7);
         }
-        
-        .password-input {
+           .password-input {
             display: flex;
             gap: 15px;
             margin-bottom: 30px;
@@ -119,7 +118,8 @@
             height: 24px;
             font-weight: 500;
         }
-         /* 主页面样式 */
+        
+        /* 主页面样式 */
         .main-container {
             display: none;
             flex-direction: column;
@@ -147,8 +147,7 @@
         .site-title i {
             color: #4fc3f7;
         }
-        
-        .nav-container {
+          .nav-container {
             display: flex;
             gap: 5px;
             flex-wrap: wrap;
@@ -225,8 +224,7 @@
         .game-link i {
             margin-left: 10px;
         }
-        
-        /* 科目页面样式 */
+         /* 科目页面样式 */
         .subject-container {
             display: none;
             padding: 40px;
@@ -246,7 +244,8 @@
             justify-content: center;
             gap: 15px;
         }
-          .back-button {
+        
+        .back-button {
             background: rgba(255, 255, 255, 0.1);
             border: none;
             color: white;
@@ -332,8 +331,7 @@
             background: linear-gradient(to right, #4fc3f7, #29b6f6);
             border-radius: 10px;
         }
-        
-        /* 页脚样式 */
+         /* 页脚样式 */
         .footer {
             text-align: center;
             padding: 25px;
@@ -388,7 +386,133 @@
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
-        }  // 返回按钮
+        } </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 密码页面 -->
+        <div class="password-container" id="passwordPage">
+            <i class="fas fa-dolphin dolphin-icon"></i>
+            <h1>欢迎来到Blue-dolphin小站</h1>
+            <p>请输入访问密码进入期末考试复习网站，获取各科目复习资料和进度追踪</p>
+            
+            <div class="password-input">
+                <input type="password" id="passwordInput" placeholder="请输入访问密码">
+                <button id="submitPassword">进入网站</button>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+        
+        <!-- 主页面 -->
+        <div class="main-container" id="mainPage">
+            <div class="header">
+                <div class="site-title">
+                    <i class="fas fa-dolphin"></i>
+                    Blue-dolphin小站
+                </div>
+                
+                <div class="nav-container">
+                    <div class="nav-item" data-subject="chinese">语文</div>
+                    <div class="nav-item" data-subject="math">数学</div>
+                    <div class="nav-item" data-subject="english">英语</div>
+                    <div class="nav-item" data-subject="geography">地理</div>
+                    <div class="nav-item" data-subject="history">历史</div>
+                    <div class="nav-item" data-subject="politics">政治</div>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <h1 class="main-title">完了！要期末考试了！</h1>
+                <p class="subtitle">高效复习，轻松备考，期末考试一次通过！</p>
+                
+                <a href="https://m.gamer.qq.com/v2/game/vvar5vmdz69hg9d6?sid=cqlk45aeik56mjh5sv70&cd_gamePayload=JUNMFORM_Pandora_Combine_Scheme_W3sic2NoZW1lIjoidGVzdCIsImRlbGF5IjoyMDAwfSx7InNjaGVtZSI6IkpVTVBGT1JNX0RJUkVDVF8yNzBfMTZfNzEwOCIsImRlbGF5IjowfV0%253D&channel_tag=wxgame3Fch054&wx_fullscreen_orientation=1&tdmdata=eyJvcGVuaWQiOiJvd2FubHN0bWgtTmdaWS13ZDZBRmFKbkFaUUNrIiwibm90aWNlaWQiOjAsImFjdGlkIjoiMCIsInNzaWQiOjAsImxpdmVpZCI6IiIsImNnYW1ldHlwZSI6MH0&ssid=0" 
+                   class="game-link" target="_blank">
+                    我的复习网站 <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+                        <div class="footer">
+                Blue-dolphin小站 © 2023 - 期末考试复习专用
+            </div>
+        </div>
+        
+        <!-- 科目页面 -->
+        <div class="subject-container" id="subjectPage">
+            <button class="back-button" id="backButton">
+                <i class="fas fa-arrow-left"></i> 返回首页
+            </button>
+            
+            <div class="subject-header">
+                <h2 class="subject-title">
+                    <i class="fas fa-book" id="subjectIcon"></i>
+                    <span id="subjectTitle">语文</span> 复习情况
+                </h2>
+            </div>
+            
+            <div class="subject-content">
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-clipboard-list"></i> 复习状况</h3>
+                    <div class="card-content" id="reviewStatus">正在加载复习状况...</div>
+                </div>
+                
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-chart-line"></i> 分数</h3>
+                    <div class="card-content" id="score">正在加载分数...</div>
+                </div>
+                
+                <div class="content-card">
+                    <h3 class="card-title"><i class="fas fa-tasks"></i> 掌握情况</h3>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>掌握程度</span>
+                                <span id="masteryPercent">75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="masteryBar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                Blue-dolphin小站 © 2023 - <span id="currentSubject">语文</span> 复习页面
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 密码验证
+        document.getElementById('submitPassword').addEventListener('click', function() {
+            const password = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (password === '081229') {
+                document.getElementById('passwordPage').style.display = 'none';
+                document.getElementById('mainPage').style.display = 'flex';
+            } else {
+                errorMessage.textContent = '密码错误，请重新输入！';
+                document.getElementById('passwordInput').value = '';
+            }
+        });
+        
+        // 允许按Enter键提交密码
+        document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                document.getElementById('submitPassword').click();
+            }
+        });
+                // 科目导航
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const subject = this.getAttribute('data-subject');
+                showSubjectPage(subject);
+            });
+        });
+        
+        // 返回按钮
         document.getElementById('backButton').addEventListener('click', function() {
             document.getElementById('subjectPage').style.display = 'none';
             document.getElementById('mainPage').style.display = 'flex';
@@ -430,8 +554,7 @@
                 history: "中国古代史复习完成，近现代史需要加强",
                 politics: "经济部分掌握良好，政治制度部分需要复习"
             };
-            
-            // 模拟分数
+                      // 模拟分数
             const scores = {
                 chinese: "最近测试：86分<br>班级平均：78分",
                 math: "最近测试：92分<br>班级平均：85分",
