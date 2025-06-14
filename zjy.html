@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue-dolphin小站 - 期末考试复习</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: white;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 密码页面样式 */
+        .password-container {
+            padding: 60px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .password-container h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .password-container p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        
+        .dolphin-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            color: #4fc3f7;
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.7);
+        }
+        
+        .password-input {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .password-input input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .password-input input:focus {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #4fc3f7;
+        }
+        
+        .password-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .password-input button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            background: #4fc3f7;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
+        }
+        
+        .password-input button:hover {
+            background: #29b6f6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(79, 195, 247, 0.6);
+        }
+        
+        .error-message {
+            color: #ff9e80;
+            margin-top: 10px;
+            height: 24px;
+            font-weight: 500;
+        }
+         /* 主页面样式 */
+        .main-container {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        /* 顶部导航栏 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .site-title i {
+            color: #4fc3f7;
+        }
+        
+        .nav-container {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .nav-item.active {
+            background: rgba(79, 195, 247, 0.3);
+            border-color: rgba(79, 195, 247, 0.5);
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            padding: 60px 40px;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .main-title {
+            font-size: 4.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 50px;
+            color: #e1f5fe;
+        }
+        
+        .game-link {
+            display: inline-block;
+            padding: 18px 45px;
+            background: linear-gradient(to right, #ff6b6b, #ff8e53);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+            margin-top: 20px;
+        }
+        
+        .game-link:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(to right, #ff5252, #ff7b47);
+        }
+        
+        .game-link i {
+            margin-left: 10px;
+        }
+        
+        /* 科目页面样式 */
+        .subject-container {
+            display: none;
+            padding: 40px;
+            min-height: 70vh;
+        }
+        
+        .subject-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .subject-title {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+          .back-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 auto 30px;
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .subject-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #81d4fa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-content {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .progress-container {
+            margin-top: 20px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4fc3f7, #29b6f6);
+            border-radius: 10px;
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .main-title {
+                font-size: 3.5rem;
+            }
+            
+            .subject-title {
+                font-size: 2.2rem;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-container {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .main-title {
+                font-size: 2.8rem;
+            }
+            
+            .password-container h1 {
+                font-size: 2.2rem;
+            }
+            
+            .password-input {
+                flex-direction: column;
+            }
+            
+            .password-input button {
+                width: 100%;
+            }
+            
+            .subject-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-item {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }  // 返回按钮
+        document.getElementById('backButton').addEventListener('click', function() {
+            document.getElementById('subjectPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'flex';
+        });
+        
+        // 显示科目页面
+        function showSubjectPage(subject) {
+            // 隐藏主页面，显示科目页面
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('subjectPage').style.display = 'block';
+            
+            // 设置科目信息
+            const subjectData = {
+                chinese: { name: '语文', icon: 'fa-book', color: '#4CAF50' },
+                math: { name: '数学', icon: 'fa-calculator', color: '#2196F3' },
+                english: { name: '英语', icon: 'fa-language', color: '#FF9800' },
+                geography: { name: '地理', icon: 'fa-globe-asia', color: '#9C27B0' },
+                history: { name: '历史', icon: 'fa-landmark', color: '#F44336' },
+                politics: { name: '政治', icon: 'fa-balance-scale', color: '#673AB7' }
+            };
+            
+            const currentSubject = subjectData[subject];
+            
+            // 更新页面内容
+            document.getElementById('subjectTitle').textContent = currentSubject.name;
+            document.getElementById('subjectIcon').className = `fas ${currentSubject.icon}`;
+            document.getElementById('currentSubject').textContent = currentSubject.name;
+            
+            // 设置复习状况和分数（模拟数据）
+            const reviewStatus = document.getElementById('reviewStatus');
+            const score = document.getElementById('score');
+            
+            // 模拟复习状况描述
+            const reviewStatuses = {
+                chinese: "已完成古诗文复习，现代文阅读需加强练习",
+                math: "代数部分掌握良好，几何证明题需要更多练习",
+                english: "词汇量充足，语法和写作需要提高",
+                geography: "自然地理部分掌握良好，人文地理需要复习",
+                history: "中国古代史复习完成，近现代史需要加强",
+                politics: "经济部分掌握良好，政治制度部分需要复习"
+            };
+            
+            // 模拟分数
+            const scores = {
+                chinese: "最近测试：86分<br>班级平均：78分",
+                math: "最近测试：92分<br>班级平均：85分",
+                english: "最近测试：78分<br>班级平均：82分",
+                geography: "最近测试：88分<br>班级平均：75分",
+                history: "最近测试：81分<br>班级平均：79分",
+                politics: "最近测试：90分<br>班级平均：83分"
+            };
+            
+            // 模拟掌握程度
+            const mastery = {
+                chinese: 80,
+                math: 90,
+                english: 70,
+                geography: 85,
+                history: 75,
+                politics: 88
+            };
+            
+            reviewStatus.innerHTML = reviewStatuses[subject];
+            score.innerHTML = scores[subject];
+            
+            // 更新进度条
+            const masteryPercent = mastery[subject];
+            document.getElementById('masteryPercent').textContent = `${masteryPercent}%`;
+            document.getElementById('masteryBar').style.width = `${masteryPercent}%`;
+            document.getElementById('masteryBar').style.background = 
+                `linear-gradient(to right, ${currentSubject.color}, ${adjustColor(currentSubject.color, 20)})`;
+        }
+        
+        // 辅助函数：调整颜色亮度
+        function adjustColor(color, percent) {
+            // 简化处理，实际项目中应使用完整颜色处理逻辑
+            return color;
+        }
+        
+        // 初始显示密码页面
+        document.getElementById('passwordPage').style.display = 'flex';
+        document.getElementById('mainPage').style.display = 'none';
+        document.getElementById('subjectPage').style.display = 'none';
+    </script>
+</body>
+</html>
